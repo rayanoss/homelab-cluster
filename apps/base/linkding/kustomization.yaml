@@ -3,3 +3,8 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - deployment.yaml
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: linkding
