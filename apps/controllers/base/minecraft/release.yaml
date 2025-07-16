@@ -15,13 +15,14 @@ spec:
         namespace: minecraft
       interval: 12h
   values:
-    eula: "TRUE"
     minecraftServer:
+      eula: "TRUE"
       type: "PAPER"
       version: "1.21"
       memory: "1G"
+      serviceType: ClusterIP
     persistence:
-      enabled: true
-      size: 5Gi
-    service:
-      type: ClusterIP
+      dataDir:
+        enabled: false
+        Size: 5Gi
+        storageClass: local-path
