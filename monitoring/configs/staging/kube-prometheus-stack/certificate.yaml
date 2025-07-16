@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  secretName: grafana-tls-secret
+  privateKey:
+    rotationPolicy: Always
+  commonName: grs.undefinedlab.uk
+  dnsNames:
+    - grs.undefinedlab.uk
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
