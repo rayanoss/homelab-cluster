@@ -5,4 +5,4 @@ metadata:
   namespace: minecraft
 spec:
   interval: 24h
-  url: https://itzg.github.io/minecraft-charts/
+  url: https://itzg.github.io/minecraft-server-charts/
