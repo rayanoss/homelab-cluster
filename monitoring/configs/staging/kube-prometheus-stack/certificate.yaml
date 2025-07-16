@@ -11,5 +11,5 @@ spec:
   dnsNames:
     - grs.undefinedlab.uk
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt
     kind: ClusterIssuer
