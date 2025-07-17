@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: playit-agent
+  namespace: minecraft
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: playit-agent
+  template:
+    metadata:
+      labels:
+        app: playit-agent
+    spec:
+      containers:
+      - name: playit
+        image: ghcr.io/playit-cloud/playit-agent:0.15
+        envFrom:
+          - secretRef:
+              name: play-it-container-env
