@@ -32,3 +32,5 @@ spec:
       install: false
     certmanager-issuer:
       email: rayane.kadi10@gmail.com
+    edition: ce
+
