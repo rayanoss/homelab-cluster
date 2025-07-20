@@ -22,7 +22,7 @@ spec:
       ingress:
         provider: traefik
         enabled: true
-        class: traefik
+        class: gitlab-traefik
         configureCertmanager: true
         tls:
           enabled: true
