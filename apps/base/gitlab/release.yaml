@@ -14,19 +14,19 @@ spec:
         name: gitlab
         namespace: gitlab
       interval: 12h
-    values:
-      global:
-        hosts:
-          domain: undefinedlab.uk
-          https: true
-        ingress:
-          provider: traefik
+  values:   
+    global:
+      hosts:
+        domain: undefinedlab.uk
+        https: true
+      ingress:
+        provider: traefik
+        enabled: true
+        class: traefik
+        configureCertmanager: true  
+        tls:
           enabled: true
-          class: traefik
-          configureCertmanager: true  
-          tls:
-            enabled: true
-            annotations:
-              cert-manager.io/cluster-issuer: "letsencrypt" 
-      certmanager:
-        install: false  
+          annotations:
+            cert-manager.io/cluster-issuer: "letsencrypt"
+    certmanager:
+      install: false  
