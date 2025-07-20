@@ -14,7 +14,7 @@ spec:
         name: gitlab
         namespace: gitlab
       interval: 12h
-  values:   
+  values:
     global:
       hosts:
         domain: undefinedlab.uk
@@ -23,10 +23,12 @@ spec:
         provider: traefik
         enabled: true
         class: traefik
-        configureCertmanager: true  
+        configureCertmanager: true
         tls:
           enabled: true
           annotations:
             cert-manager.io/cluster-issuer: "letsencrypt"
     certmanager:
-      install: false  
+      install: false
+    certmanager-issuer:
+      email: rayane.kadi10@gmail.com
