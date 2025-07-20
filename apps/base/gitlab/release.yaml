@@ -33,4 +33,44 @@ spec:
     certmanager-issuer:
       email: rayane.kadi10@gmail.com
     edition: ce
+    gitlab:
+      webservice:
+        env:
+          MALLOC_CONF: 'dirty_decay_ms:1000,muzzy_decay_ms:1000'
+        workerProcesses: 0
+        resources:
+          requests:
+            memory: 500Mi
+          limits:
+            memory: 1Gi
+
+        puma:
+          threads:
+            min: 1
+            max: 1
+
+      sidekiq:
+        concurrency: 1
+        env:
+          MALLOC_CONF: 'dirty_decay_ms:1000,muzzy_decay_ms:1000'
+
+      gitaly:
+        concurrency:
+          - rpc: "/gitaly.SmartHTTPService/PostReceivePack"
+            max_per_repo: 1
+          - rpc: "/gitaly.SSHService/SSHUploadPack"
+            max_per_repo: 1
+        cgroups:
+          repositories:
+            count: 2
+          mountpoint: "/sys/fs/cgroup"
+          hierarchy_root: "gitaly"
+          memory_bytes: 536870912  # 512MiB
+          cpu_shares: 512
+          
+        env:
+          GITALY_COMMAND_SPAWN_MAX_PARALLEL: "2"
+          MALLOC_CONF: 'dirty_decay_ms:1000,muzzy_decay_ms:1000'
+      prometheus:
+        install: false
 
