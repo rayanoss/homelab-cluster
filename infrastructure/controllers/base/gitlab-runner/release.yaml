@@ -21,6 +21,15 @@ spec:
     serviceAccount:
       create: true
       name: gitlab-runner
+    runners:
+    config: |
+      [[runners]]
+        executor = "kubernetes"
+        [runners.kubernetes]
+          privileged = true
+          [[runners.kubernetes.services]]
+            name = "docker:24.0.7-dind"
+            command = ["--host=tcp://0.0.0.0:2375", "--tls=false"]
   valuesFrom:
     - kind: Secret
       name: runner-token
