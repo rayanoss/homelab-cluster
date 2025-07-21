@@ -4,4 +4,11 @@ resources:
   - namespace.yaml
   - repository.yaml
   - release.yaml
-  - gitlab-traefik.yaml
+
+secretGenerator:
+  - name: runner-token
+    files:
+      - values.yaml=values.yaml
+      
+configurations:
+  - kustomizeconfig.yaml
