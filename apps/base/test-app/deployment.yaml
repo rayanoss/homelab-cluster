@@ -16,6 +16,8 @@ spec:
         fsGroup: 33
         runAsUser: 33
         runAsGroup: 33
+      imagePullSecrets:
+        - name: harbor-credentials
       containers:
         - name: test-app
           image: harbor.undefinedlab.uk/test/test-app:latest
