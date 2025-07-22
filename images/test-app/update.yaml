@@ -1,0 +1,43 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: test-app
+  namespace: flux-system
+spec:
+  image: harbor.undefinedlab.uk/test/test-app
+  interval: 1m
+  secretRef:
+    name: harbor-credentials
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: test-app-policy
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: test-app
+  policy:
+    alphabetical:
+      order: desc
+
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageUpdateAutomation
+metadata:
+  name: test-app-auto
+  namespace: flux-system
+spec:
+  interval: 1m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  git:
+    commit:
+      author:
+        email: fluxcdbot@users.noreply.github.com
+        name: fluxcdbot
+    push:
+      branch: main
+  update:
+    strategy: Setters
