@@ -12,3 +12,7 @@ spec:
     name: flux-system
   path: ./images
   prune: true
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
