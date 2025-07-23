@@ -6,3 +6,4 @@ resources:
   - seal-secrets.yaml
   - repository.yaml
   - release.yaml
+  - self-certificate.yaml
