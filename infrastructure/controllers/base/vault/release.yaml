@@ -71,14 +71,18 @@ spec:
         path: "/v1/sys/health?standbyok=true"
         initialDelaySeconds: 60
 
+      volumes:
+        - name: downward
+          emptyDir: {}
+
       extraInitContainers:
         - name: inject-downward-api-vars
           image: busybox
           command: ["sh", "-c"]
           args:
             - |
-              echo "$POD_NAME" > /vault/userconfig/downward/pod_name;
-              echo "$POD_NAMESPACE" > /vault/userconfig/downward/namespace;
+              echo "$POD_NAME" > /vault/data/pod;
+              echo "$POD_NAMESPACE" > /vault/data/ns;
           env:
             - name: POD_NAME
               valueFrom:
@@ -90,13 +94,13 @@ spec:
                   fieldPath: metadata.namespace
           volumeMounts:
             - name: downward
-              mountPath: /vault/userconfig/downward
+              mountPath: /vault/data
 
   
 
       extraEnvironmentVars:
-        VAULT_K8S_POD_NAME_FILE: /vault/userconfig/downward/pod_name
-        VAULT_K8S_NAMESPACE_FILE: /vault/userconfig/downward/namespace
+        VAULT_K8S_POD_NAME_FILE: /vault/data/pod
+        VAULT_K8S_NAMESPACE_FILE: /vault/data/ns
         VAULT_CACERT: /vault/userconfig/tls-ca/ca.crt
 
       extraSecretEnvironmentVars:
@@ -108,9 +112,6 @@ spec:
           secretKey: AWS_SECRET_ACCESS_KEY
 
       extraVolumes:
-        - type: emptyDir
-          name: downward
-          path: /vault/userconfig/downward
         - type: secret
           name: vault-internal-tls-secret
         - type: secret
