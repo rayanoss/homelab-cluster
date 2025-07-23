@@ -37,12 +37,12 @@ spec:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.tls: "true"
         hosts:
-          - host: vault.localhost
+          - host: vault.undefinedlab.uk 
             paths:
               - /
         tls:
           - hosts:
-              - vault.localhost
+              - vault.undefinedlab.uk 
             secretName: vault-tls-secret
       image:
         repository: "hashicorp/vault"
