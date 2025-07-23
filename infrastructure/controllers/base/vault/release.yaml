@@ -30,6 +30,7 @@ spec:
           memory: 256Mi
           cpu: 250m
     server:
+    
       affinity: null
       serviceAccount:
         create: true
@@ -70,13 +71,33 @@ spec:
         path: "/v1/sys/health?standbyok=true"
         initialDelaySeconds: 60
 
+      extraInitContainers:
+        - name: inject-downward-api-vars
+          image: busybox
+          command: ["sh", "-c"]
+          args:
+            - |
+              echo "$POD_NAME" > /vault/userconfig/downward/pod_name;
+              echo "$POD_NAMESPACE" > /vault/userconfig/downward/namespace;
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          volumeMounts:
+            - name: downward
+              mountPath: /vault/userconfig/downward
+
+  
+
       extraEnvironmentVars:
-        - name: VAULT_K8S_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-        - name: VAULT_CACERT
-          value: /vault/userconfig/tls-ca/ca.crt
+        VAULT_K8S_POD_NAME_FILE: /vault/userconfig/downward/pod_name
+        VAULT_K8S_NAMESPACE_FILE: /vault/userconfig/downward/namespace
+        VAULT_CACERT: /vault/userconfig/tls-ca/ca.crt
 
       extraSecretEnvironmentVars:
         - envName: AWS_ACCESS_KEY_ID
@@ -87,6 +108,9 @@ spec:
           secretKey: AWS_SECRET_ACCESS_KEY
 
       extraVolumes:
+        - type: emptyDir
+          name: downward
+          path: /vault/userconfig/downward
         - type: secret
           name: vault-internal-tls-secret
         - type: secret
