@@ -6,3 +6,4 @@ resources:
   - cnpg
   - gitlab-runner
   - harbor
+  - vault
