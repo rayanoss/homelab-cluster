@@ -20,7 +20,7 @@ spec:
         - name: harbor-credentials
       containers:
         - name: test-app
-          image: harbor.undefinedlab.uk/test/test-app::v0.0.0
+          image: harbor.undefinedlab.uk/test/test-app:v0.0.0
           ports:
             - containerPort: 3000
           env:
