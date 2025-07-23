@@ -17,10 +17,12 @@ metadata:
 spec:
   imageRepositoryRef:
     name: test-app
+  filterTags:
+    pattern: "^latest$"
   policy:
-    alphabetical:
-      order: desc
-
+    alphabetical: {}
+  digestReflectionPolicy: Always
+  interval: 1m
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageUpdateAutomation
@@ -33,11 +35,16 @@ spec:
     kind: GitRepository
     name: flux-system
   git:
+    checkout:
+      ref:
+        branch: main
     commit:
       author:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
+      messageTemplate: '{{range .Changed.Changes}}{{print .OldValue}} -> {{println .NewValue}}{{end}}'
     push:
       branch: main
   update:
+    path: ./apps/base/test-app
     strategy: Setters
