@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - certificate.yaml
-  - rbac.yaml
   - seal-secrets.yaml
   - repository.yaml
   - release.yaml

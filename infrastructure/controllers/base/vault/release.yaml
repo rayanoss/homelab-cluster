@@ -31,6 +31,9 @@ spec:
           cpu: 250m
     server:
       affinity: null
+      serviceAccount:
+        create: true
+        name: vault
       ingress:
         enabled: true
         ingressClassName: traefik
