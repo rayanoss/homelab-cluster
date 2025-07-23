@@ -65,7 +65,15 @@ spec:
         path: "/v1/sys/health?standbyok=true"
         initialDelaySeconds: 60
 
+
+      extraEnvVars:
+        - name: VAULT_K8S_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+
       extraEnvironmentVars:
+        VAULT_K8S_NAMESPACE: vault
         VAULT_CACERT: /vault/userconfig/tls-ca/ca.crt
 
       extraSecretEnvironmentVars:
@@ -143,6 +151,8 @@ spec:
                 leader_client_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
               }
             }
+
+            service_registration "kubernetes" {}
         active:
           enabled: true           
         standby:
