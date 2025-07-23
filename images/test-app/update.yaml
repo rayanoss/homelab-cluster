@@ -20,7 +20,8 @@ spec:
   filterTags:
     pattern: "^latest$"
   policy:
-    alphabetical: {}
+    alphabetical: 
+      order: desc
   digestReflectionPolicy: Always
   interval: 1m
 ---
