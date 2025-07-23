@@ -50,7 +50,7 @@ spec:
         tls:
           - hosts:
               - vault.undefinedlab.uk
-            secretName: vault-tls-secret
+            secretName: vault-internal-tls-secret
       image:
         repository: "hashicorp/vault"
         tag: "1.16.1"
