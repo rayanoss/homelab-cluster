@@ -10,11 +10,6 @@ spec:
   commonName: vault.undefinedlab.uk
   dnsNames:
     - vault.undefinedlab.uk
-    - vault-0.vault-internal
-    - vault-1.vault-internal
-    - vault-2.vault-internal
-    - vault-3.vault-internal
-    - vault-4.vault-internal
   issuerRef:
     name: letsencrypt
     kind: ClusterIssuer
