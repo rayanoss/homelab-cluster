@@ -30,6 +30,7 @@ spec:
           memory: 256Mi
           cpu: 250m
     server:
+      affinity: null
       ingress:
         enabled: true
         ingressClassName: traefik
