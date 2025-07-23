@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vault-internal
+  namespace: vault
+spec:
+  secretName: vault-internal-tls-secret
+  commonName: vault-internal
+  dnsNames:
+    - vault-0.vault-internal
+    - vault-1.vault-internal
+    - vault-2.vault-internal
+    - vault-3.vault-internal
+    - vault-4.vault-internal
+  issuerRef:
+    name: self-signed-issuer
+    kind: ClusterIssuer
