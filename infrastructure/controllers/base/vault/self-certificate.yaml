@@ -12,6 +12,7 @@ spec:
     - vault-2.vault-internal
     - vault-3.vault-internal
     - vault-4.vault-internal
+    - vault.undefinedlab.uk
   issuerRef:
     name: self-signed-issuer
     kind: ClusterIssuer
