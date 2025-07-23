@@ -13,6 +13,9 @@ spec:
     - vault-3.vault-internal
     - vault-4.vault-internal
     - vault.undefinedlab.uk
+    - vault-active.vault.svc.cluster.local
+    - vault-active.vault.svc
+    - vault-active.vault
   issuerRef:
     name: self-signed-issuer
     kind: ClusterIssuer
