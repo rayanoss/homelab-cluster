@@ -94,7 +94,7 @@ spec:
           config: |
             seal "awskms" {
               region     = "eu-west-3"
-              kms_key_id = "arn:aws:kms:eu-west-3:<TON_ACCOUNT_ID>:key/7bfdde74-57d0-4382-88aa-2cef282369cb"
+              kms_key_id = "7bfdde74-57d0-4382-88aa-2cef282369cb"
             }
             ui = true
             cluster_name = "vault-integrated-storage"
