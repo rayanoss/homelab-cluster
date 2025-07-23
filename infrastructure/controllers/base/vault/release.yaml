@@ -67,7 +67,7 @@ spec:
 
       extraEnvironmentVars:
         VAULT_CACERT: /vault/userconfig/tls-ca/ca.crt
-        
+
       extraSecretEnvironmentVars:
         - envName: AWS_ACCESS_KEY_ID
           secretName: eks-creds
@@ -143,6 +143,10 @@ spec:
                 leader_client_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
               }
             }
+        active:
+          enabled: true           
+        standby:
+          enabled: true  
       ui:
         enabled: true
         serviceType: "ClusterIP"
