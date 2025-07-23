@@ -38,19 +38,9 @@ spec:
         serviceDiscovery: 
           enabled: true
       ingress:
-        enabled: true
+        enabled: false
         ingressClassName: traefik
-        annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.tls: "true"
-        hosts:
-          - host: vault.undefinedlab.uk
-            paths:
-              - /
-        tls:
-          - hosts:
-              - vault.undefinedlab.uk
-            secretName: vault-internal-tls-secret
+        
       image:
         repository: "hashicorp/vault"
         tag: "1.16.1"
