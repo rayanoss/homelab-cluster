@@ -81,8 +81,8 @@ spec:
           command: ["sh", "-c"]
           args:
             - |
-              echo "$POD_NAME" > /vault/data/pod;
-              echo "$POD_NAMESPACE" > /vault/data/ns;
+              echo "$POD_NAME" > /vault/downward/pod;
+              echo "$POD_NAMESPACE" > /vault/downward/ns;
           env:
             - name: POD_NAME
               valueFrom:
@@ -94,13 +94,13 @@ spec:
                   fieldPath: metadata.namespace
           volumeMounts:
             - name: downward
-              mountPath: /vault/data
+              mountPath: /vault/downward
 
   
 
       extraEnvironmentVars:
-        VAULT_K8S_POD_NAME_FILE: /vault/data/pod
-        VAULT_K8S_NAMESPACE_FILE: /vault/data/ns
+        VAULT_K8S_POD_NAME_FILE: /vault/downward/pod
+        VAULT_K8S_NAMESPACE_FILE: /vault/downward/ns
         VAULT_CACERT: /vault/userconfig/tls-ca/ca.crt
 
       extraSecretEnvironmentVars:
