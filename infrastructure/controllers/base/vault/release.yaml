@@ -30,6 +30,20 @@ spec:
           memory: 256Mi
           cpu: 250m
     server:
+      ingress:
+        enabled: true
+        ingressClassName: traefik
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.tls: "true"
+        hosts:
+          - host: vault.localhost
+            paths:
+              - /
+        tls:
+          - hosts:
+              - vault.localhost
+            secretName: vault-tls-secret
       image:
         repository: "hashicorp/vault"
         tag: "1.16.1"
