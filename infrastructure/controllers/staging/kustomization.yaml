@@ -7,3 +7,4 @@ resources:
   - gitlab-runner
   - harbor
   - vault
+  - vault-secrets-operator

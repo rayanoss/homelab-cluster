@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: vault-secrets-operator
+  namespace: vault-secrets-operator
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: "vault-secrets-operator"
+      version: "0.10.0"
+      sourceRef:
+        kind: HelmRepository
+        name: hashicorp
+        namespace: vault-secrets-operator
+      interval: 12h
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  values:
+    defaultVaultConnection:
+      enabled: true
+      address: "https://vault.undefinedlab.uk"
+      skipTLSVerify: false
+    controller:
+      manager:
+        clientCache:
+          persistenceModel: direct-encrypted
+          storageEncryption:
+            enabled: true
+            mount: kubernetes
+            keyName: vso-client-cache
+            transitMount: transit-mount
+            kubernetes:
+              role: auth-role-operator
+              serviceAccount: vault-secrets-operator-controller-manager
+              tokenAudiences: ["vault"]
