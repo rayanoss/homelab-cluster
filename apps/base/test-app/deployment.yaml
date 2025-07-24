@@ -27,12 +27,12 @@ spec:
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: test-app-db-app
+                  name: postgres
                   key: username
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: test-app-db-app
+                  name: postgres
                   key: password
             - name: DB_HOST
               valueFrom:
