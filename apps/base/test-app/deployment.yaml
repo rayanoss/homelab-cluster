@@ -23,26 +23,26 @@ spec:
           image: harbor.undefinedlab.uk/test/test-app:latest@sha256:badf8746a093bd11f7d240252a8e1571844af4a4dc332ae22dfe8206fc3eca67 # {"$imagepolicy": "flux-system:test-app-policy"}
           ports:
             - containerPort: 3000
-          env:
-            - name: DB_USER
-              valueFrom:
-                secretKeyRef:
-                  name: postgres
-                  key: username
-            - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: postgres
-                  key: password
-            - name: DB_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: test-app-db-app
-                  key: host
-            - name: DB_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: test-app-db-app
-                  key: dbname
+          # env:
+          #   - name: DB_USER
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: postgres
+          #         key: username
+          #   - name: DB_PASSWORD
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: postgres
+          #         key: password
+          #   - name: DB_HOST
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: test-app-db-app
+          #         key: host
+          #   - name: DB_NAME
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: test-app-db-app
+          #         key: dbname
           securityContext:
             allowPrivilegeEscalation: false
