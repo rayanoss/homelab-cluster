@@ -3,6 +3,8 @@ kind: ServiceAccount
 metadata:
   namespace: test-app
   name: test-app-sa
+automountServiceAccountToken: true
+
 ---
 apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultAuth
