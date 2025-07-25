@@ -17,4 +17,7 @@ spec:
     serviceAccount: test-app-sa
     audiences:
       - vault
+  storageEncryption:
+    mount: transit-mount
+    keyName: vso-client-cache
 
