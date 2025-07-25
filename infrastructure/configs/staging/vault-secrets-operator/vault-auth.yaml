@@ -3,3 +3,23 @@ kind: ServiceAccount
 metadata:
   namespace: vault-secrets-operator
   name: vault-secrets-operator-controller-manager
+
+---
+
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  name: operator-auth
+  namespace: vault-secrets-operator
+spec:
+  method: kubernetes
+  mount: kubernetes  
+  vaultConnectionRef: default  
+  kubernetes:
+    role: auth-role-operator
+    serviceAccount: vault-secrets-operator-controller-manager
+    audiences:
+      - vault
+  storageEncryption:
+    mount: transit-mount            
+    keyName: vso-client-cache       
