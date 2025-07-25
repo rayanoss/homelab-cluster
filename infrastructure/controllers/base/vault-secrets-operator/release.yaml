@@ -18,6 +18,7 @@ spec:
     crds: Create
   upgrade:
     crds: CreateReplace
+    force: true 
   values:
     defaultVaultConnection:
       enabled: true
