@@ -1,5 +1,5 @@
 apiVersion: postgresql.cnpg.io/v1
-kind: ScheduleBackup
+kind: ScheduledBackup
 metadata:
   name: test-app-db-backup
 spec: 
