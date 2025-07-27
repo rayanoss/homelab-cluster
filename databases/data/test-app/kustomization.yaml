@@ -5,4 +5,5 @@ resources:
   - aws-creds.yaml
   - namespace.yaml
   - database.yaml
+  - scheduled-backup.yaml
 
