@@ -1,0 +1,10 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduleBackup
+metadata:
+  name: test-app-db-backup
+spec: 
+  immediate: true
+  schedule: "0 0 0 * * *"
+  backupOwnerReference: cluster
+  cluster:
+    name: test-app-db

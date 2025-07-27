@@ -3,6 +3,40 @@ kind: Cluster
 metadata:
   name: test-app-db
 spec:
+  bootstrap:
+    recovery:
+      source: clusterBackup
+
+  backup:
+    barmanObjectStore: 
+      destinationPath: s3://test-app-db-cnpg-backup/
+      s3Credentials: 
+        accessKeyId:
+          name: aws-creds
+          key: AWS_ACCESS_KEY_ID
+        secretAccessKey:
+          name: aws-creds
+          key: AWS_SECRET_ACCESS_KEY
+    retentionPolicy: 1d
+
+  externalClusters:
+    - name: clusterBackup
+      barmanObjectStore:
+        destinationPath: s3://test-app-db-cnpg-backup/
+        serverName: "test-app-db-v0"      
+        s3Credentials:                     
+          accessKeyId:
+            name: aws-creds
+            key: ACCESS_KEY_ID
+          secretAccessKey:
+            name: aws-creds
+            key: ACCESS_SECRET_KEY
+        wal:
+          compression: gzip
+        data:
+          compression: gzip
+
+
   instances: 1
   imageName: quay.io/enterprisedb/postgresql:16.1
   inheritedMetadata:
