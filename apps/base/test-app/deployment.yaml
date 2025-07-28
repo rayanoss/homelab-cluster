@@ -20,7 +20,7 @@ spec:
         - name: harbor-credentials
       containers:
         - name: test-app
-          image: harbor.undefinedlab.uk/test/test-app:latest@sha256:badf8746a093bd11f7d240252a8e1571844af4a4dc332ae22dfe8206fc3eca67 # {"$imagepolicy": "flux-system:test-app-policy"}
+          image: harbor.undefinedlab.uk/test/test-app:latest@sha256:dcadb74079a82b2c1ecad6492b838d7831dea9b2fbbc1bb4de733325a69a4875 # {"$imagepolicy": "flux-system:test-app-policy"}
           ports:
             - containerPort: 3000
           env:
