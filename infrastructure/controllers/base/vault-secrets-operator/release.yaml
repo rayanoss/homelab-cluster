@@ -27,6 +27,13 @@ spec:
       caCertSecret: tls-ca
     controller:
       manager:
+        resources:
+          requests:
+            cpu: 5m
+            memory: 48Mi
+          limits:
+            cpu: 5m
+            memory: 48Mi
         clientCache:
           persistenceModel: direct-encrypted
           storageEncryption:

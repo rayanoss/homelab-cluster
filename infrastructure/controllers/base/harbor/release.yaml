@@ -15,6 +15,42 @@ spec:
         namespace: harbor
       interval: 12h
   values:
+    jobservice:
+      resources:
+        requests:
+          cpu: 3m
+          memory: 16Mi
+        limits:
+          cpu: 15m
+          memory: 48Mi
+
+    registry:
+      server:
+        resources:
+          requests:
+            cpu: 2m
+            memory: 32Mi
+          limits:
+            cpu: 2m
+            memory: 32Mi
+
+    postgresql:
+      primary:
+        resources:
+          requests:
+            cpu: 15m
+            memory: 64Mi
+          limits:
+            cpu: 15m
+            memory: 64Mi
+    core:
+      resources:
+        requests:
+          cpu: 3m
+          memory: 64Mi
+        limits:
+          cpu: 3m
+          memory: 64Mi
     expose:
       tls:
         certSource: secret

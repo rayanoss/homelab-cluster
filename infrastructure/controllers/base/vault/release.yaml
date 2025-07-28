@@ -22,15 +22,18 @@ spec:
     global:
       enabled: true
       tlsDisable: false
+    
+    injector:
+      enabled: false
+      
+    server:
       resources:
         requests:
-          memory: 256Mi
-          cpu: 250m
+          cpu: 20m
+          memory: 64Mi
         limits:
-          memory: 256Mi
-          cpu: 250m
-    server:
-    
+          cpu: 20m
+          memory: 64Mi
       affinity: null
       serviceAccount:
         create: true
@@ -44,14 +47,6 @@ spec:
       image:
         repository: "hashicorp/vault"
         tag: "1.16.1"
-
-      resources:
-        requests:
-          memory: 256Mi
-          cpu: 200m
-        limits:
-          memory: 512Mi
-          cpu: 500m
 
       readinessProbe:
         enabled: true
