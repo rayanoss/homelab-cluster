@@ -130,16 +130,16 @@ spec:
             cluster_name = "vault-integrated-storage"
             listener "tcp" {
               address = "[::]:8200"
-              cluster_address = "[::]:8201"
-              tls_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
-              tls_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
+              cluster_address = "[::]:8200"
+              tls_cert_file = "/vault/userconfig/vault-tls-secret/tls.crt"
+              tls_key_file  = "/vault/userconfig/vault-tls-secret/tls.key"
             }
 
             listener "tcp" {
               address = "[::]:8200"
-              cluster_address = "[::]:8200"
-              tls_cert_file = "/vault/userconfig/vault-tls-secret/tls.crt"
-              tls_key_file  = "/vault/userconfig/vault-tls-secret/tls.key"
+              cluster_address = "[::]:8201"
+              tls_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
+              tls_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
             }
 
             storage "raft" {
