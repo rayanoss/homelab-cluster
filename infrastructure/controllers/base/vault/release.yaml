@@ -22,10 +22,19 @@ spec:
     global:
       enabled: true
       tlsDisable: false
-    
-    injector:
-      enabled: false
-      
+
+    resources:
+      requests:
+        cpu: 20m
+        memory: 64Mi
+      limits:
+        cpu: 20m
+        memory: 64Mi
+
+    # injector:
+    #   enabled: false
+    # affinity: null
+
     server:
       resources:
         requests:
@@ -34,58 +43,67 @@ spec:
         limits:
           cpu: 20m
           memory: 64Mi
-      affinity: null
-      serviceAccount:
-        create: true
-        name: vault
-        serviceDiscovery: 
-          enabled: true
-      ingress:
-        enabled: false
-        ingressClassName: traefik
-        
+
+      readinessProbe:
+        enabled: true
+        path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
+      livenessProbe:
+        enabled: true
+        path: "/v1/sys/health?standbyok=true"
+        initialDelaySeconds: 60
+
+      # serviceAccount:
+      #   create: true
+      #   name: vault
+      #   serviceDiscovery:
+      #     enabled: true
+      # ingress:
+      #   enabled: false
+      #   ingressClassName: traefik
+
       image:
         repository: "hashicorp/vault"
         tag: "1.16.1"
 
-      readinessProbe:
-        enabled: false
-      livenessProbe:
-        enabled: false
+      # volumes:
+      #   - name: downward
+      #     emptyDir: {}
 
-      volumes:
-        - name: downward
-          emptyDir: {}
+      # extraInitContainers:
+      #   - name: inject-downward-api-vars
+      #     image: busybox
+      #     command: ["sh", "-c"]
+      #     args:
+      #       - |
+      #         echo "$POD_NAME" > /vault/downward/pod;
+      #         echo "$POD_NAMESPACE" > /vault/downward/ns;
+      #     env:
+      #       - name: POD_NAME
+      #         valueFrom:
+      #           fieldRef:
+      #             fieldPath: metadata.name
+      #       - name: POD_NAMESPACE
+      #         valueFrom:
+      #           fieldRef:
+      #             fieldPath: metadata.namespace
+      #     volumeMounts:
+      #       - name: downward
+      #         mountPath: /vault/downward
 
-      extraInitContainers:
-        - name: inject-downward-api-vars
-          image: busybox
-          command: ["sh", "-c"]
-          args:
-            - |
-              echo "$POD_NAME" > /vault/downward/pod;
-              echo "$POD_NAMESPACE" > /vault/downward/ns;
-          env:
-            - name: POD_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
-            - name: POD_NAMESPACE
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.namespace
-          volumeMounts:
-            - name: downward
-              mountPath: /vault/downward
-
-      volumeMounts:
-        - name: downward
-          mountPath: /vault/downward
+      # volumeMounts:
+      #   - name: downward
+      #     mountPath: /vault/downward
 
       extraEnvironmentVars:
-        VAULT_K8S_POD_NAME_FILE: /vault/downward/pod
-        VAULT_K8S_NAMESPACE_FILE: /vault/downward/ns
+        # VAULT_K8S_POD_NAME_FILE: /vault/downward/pod
+        # VAULT_K8S_NAMESPACE_FILE: /vault/downward/ns
         VAULT_CACERT: /vault/userconfig/tls-ca/ca.crt
+
+      auditStorage:
+        enabled: true
+
+      standalone:
+        enabled: false
 
       extraSecretEnvironmentVars:
         - envName: AWS_ACCESS_KEY_ID
@@ -101,13 +119,8 @@ spec:
         - type: secret
           name: tls-ca
 
-      dataStorage:
-        enabled: true
-      auditStorage:
-        enabled: true
-
-      standalone:
-        enabled: false
+      # dataStorage:
+      #   enabled: true
 
       ha:
         enabled: true
@@ -164,12 +177,13 @@ spec:
               }
             }
 
-            service_registration "kubernetes" {}
-        active:
-          enabled: true           
-        standby:
-          enabled: true  
+            # service_registration "kubernetes" {}
+        # active:
+        #   enabled: true
+        # standby:
+        #   enabled: true
       ui:
         enabled: true
-        serviceType: "ClusterIP"
+        serviceType: "LoadBalancer"
+        serviceNodePort: null
         externalPort: 8200
