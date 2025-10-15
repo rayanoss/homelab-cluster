@@ -33,7 +33,7 @@ spec:
 
     # injector:
     #   enabled: false
-    # affinity: null
+    affinity: null
 
     server:
       resources:
