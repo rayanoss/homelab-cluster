@@ -103,8 +103,6 @@ spec:
           name: vault-internal-tls-secret
         - type: secret
           name: tls-ca
-        - type: secret
-          name: vault-tls-secret
 
       dataStorage:
         enabled: true
@@ -133,13 +131,6 @@ spec:
               cluster_address = "[::]:8201"
               tls_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
               tls_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
-            }
-
-            listener "tcp" {
-              address = "[::]:8200"
-              cluster_address = "[::]:8200"
-              tls_cert_file = "/vault/userconfig/vault-tls-secret/tls.crt"
-              tls_key_file  = "/vault/userconfig/vault-tls-secret/tls.key"
             }
 
             storage "raft" {
