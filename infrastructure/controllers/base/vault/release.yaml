@@ -49,10 +49,10 @@ spec:
         tag: "1.16.1"
 
       readinessProbe:
-        enabled: true
+        enabled: false
         path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
       livenessProbe:
-        enabled: true
+        enabled: false
         path: "/v1/sys/health?standbyok=true"
         initialDelaySeconds: 60
 
@@ -112,7 +112,7 @@ spec:
 
       ha:
         enabled: true
-        replicas: 5
+        replicas: 1
         apiAddr: "https://vault.undefinedlab.uk:8200"
         raft:
           enabled: true
