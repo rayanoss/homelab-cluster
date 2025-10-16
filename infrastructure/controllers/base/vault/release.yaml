@@ -22,10 +22,10 @@ spec:
     global:
       enabled: true
       tlsDisable: false
-
+    
     injector:
       enabled: false
-
+      
     server:
       resources:
         requests:
@@ -38,21 +38,21 @@ spec:
       serviceAccount:
         create: true
         name: vault
-        serviceDiscovery:
+        serviceDiscovery: 
           enabled: true
       ingress:
         enabled: false
         ingressClassName: traefik
-
+        
       image:
         repository: "hashicorp/vault"
         tag: "1.16.1"
 
       readinessProbe:
-        enabled: false
+        enabled: true
         path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
       livenessProbe:
-        enabled: false
+        enabled: true
         path: "/v1/sys/health?standbyok=true"
         initialDelaySeconds: 60
 
@@ -108,87 +108,68 @@ spec:
         enabled: true
 
       standalone:
-        enabled: true
-        config: |
-          seal "awskms" {
-            region     = "eu-west-3"
-            kms_key_id = "7bfdde74-57d0-4382-88aa-2cef282369cb"
-          }
-
-          ui = true
-          listener "tcp" {
-            address = "[::]:8200"
-            cluster_address = "[::]:8201"
-            tls_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
-            tls_key_file  = "/vault/userconfig/vault-internal-tls-secret/tls.key"
-          }
-
-          storage "file" {
-            path = "/vault/data"
-          }
-
-          service_registration "kubernetes" {}
+        enabled: false
 
       ha:
-        enabled: false
-        # replicas: 5
-        # apiAddr: "https://vault.undefinedlab.uk:8200"
-        # raft:
-        #   enabled: true
-          # setNodeId: true
-          # config: |
-          #   seal "awskms" {
-          #     region     = "eu-west-3"
-          #     kms_key_id = "7bfdde74-57d0-4382-88aa-2cef282369cb"
-          #   }
-          #   ui = true
-          #   cluster_name = "vault-integrated-storage"
-          #   listener "tcp" {
-          #     address = "[::]:8200"
-          #     cluster_address = "[::]:8201"
-          #     tls_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
-          #     tls_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
-          #   }
+        enabled: true
+        replicas: 5
+        apiAddr: "https://vault.undefinedlab.uk:8200"
+        raft:
+          enabled: true
+          setNodeId: true
+          config: |
+            seal "awskms" {
+              region     = "eu-west-3"
+              kms_key_id = "7bfdde74-57d0-4382-88aa-2cef282369cb"
+            }
+            ui = true
+            cluster_name = "vault-integrated-storage"
+            listener "tcp" {
+              address = "[::]:8200"
+              cluster_address = "[::]:8201"
+              tls_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
+              tls_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
+            }
 
-          #   storage "raft" {
-          #     path = "/vault/data"
-          #     retry_join {
-          #       leader_api_addr = "https://vault-0.vault-internal:8200"
-          #       leader_ca_cert_file = "/vault/userconfig/vault-internal-tls-secret/ca.crt"
-          #       leader_client_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
-          #       leader_client_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
-          #     }
-          #     retry_join {
-          #       leader_api_addr = "https://vault-1.vault-internal:8200"
-          #       leader_ca_cert_file = "/vault/userconfig/vault-internal-tls-secret/ca.crt"
-          #       leader_client_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
-          #       leader_client_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
-          #     }
-          #     retry_join {
-          #       leader_api_addr = "https://vault-2.vault-internal:8200"
-          #       leader_ca_cert_file = "/vault/userconfig/vault-internal-tls-secret/ca.crt"
-          #       leader_client_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
-          #       leader_client_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
-          #     }
-          #     retry_join {
-          #       leader_api_addr = "https://vault-3.vault-internal:8200"
-          #       leader_ca_cert_file = "/vault/userconfig/vault-internal-tls-secret/ca.crt"
-          #       leader_client_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
-          #       leader_client_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
-          #     }
-          #     retry_join {
-          #       leader_api_addr = "https://vault-4.vault-internal:8200"
-          #       leader_ca_cert_file = "/vault/userconfig/vault-internal-tls-secret/ca.crt"
-          #       leader_client_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
-          #       leader_client_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
-          #     }
-          #   }
+            storage "raft" {
+              path = "/vault/data"
+              retry_join {
+                leader_api_addr = "https://vault-0.vault-internal:8200"
+                leader_ca_cert_file = "/vault/userconfig/vault-internal-tls-secret/ca.crt"
+                leader_client_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
+                leader_client_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
+              }
+              retry_join {
+                leader_api_addr = "https://vault-1.vault-internal:8200"
+                leader_ca_cert_file = "/vault/userconfig/vault-internal-tls-secret/ca.crt"
+                leader_client_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
+                leader_client_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
+              }
+              retry_join {
+                leader_api_addr = "https://vault-2.vault-internal:8200"
+                leader_ca_cert_file = "/vault/userconfig/vault-internal-tls-secret/ca.crt"
+                leader_client_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
+                leader_client_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
+              }
+              retry_join {
+                leader_api_addr = "https://vault-3.vault-internal:8200"
+                leader_ca_cert_file = "/vault/userconfig/vault-internal-tls-secret/ca.crt"
+                leader_client_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
+                leader_client_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
+              }
+              retry_join {
+                leader_api_addr = "https://vault-4.vault-internal:8200"
+                leader_ca_cert_file = "/vault/userconfig/vault-internal-tls-secret/ca.crt"
+                leader_client_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
+                leader_client_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
+              }
+            }
 
-          #   service_registration "kubernetes" {}
+            service_registration "kubernetes" {}
         active:
-          enabled: true
+          enabled: true           
         standby:
-          enabled: true
+          enabled: true  
       ui:
         enabled: true
         serviceType: "ClusterIP"

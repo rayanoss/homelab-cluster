@@ -7,5 +7,4 @@ resources:
   - repository.yaml
   - release.yaml
   - self-certificate.yaml
-  - ca-secret.yaml
   - ingress.yaml
