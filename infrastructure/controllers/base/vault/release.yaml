@@ -88,7 +88,7 @@ spec:
       extraEnvironmentVars:
         VAULT_K8S_POD_NAME_FILE: /vault/downward/pod
         VAULT_K8S_NAMESPACE_FILE: /vault/downward/ns
-        VAULT_CACERT: /vault/userconfig/tls-ca/ca.crt
+        VAULT_CACERT: /vault/userconfig/vault-internal-tls-secret/ca.crt
 
       extraSecretEnvironmentVars:
         - envName: AWS_ACCESS_KEY_ID
