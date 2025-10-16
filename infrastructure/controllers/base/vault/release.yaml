@@ -101,9 +101,7 @@ spec:
       extraVolumes:
         - type: secret
           name: vault-internal-tls-secret
-        - type: secret
-          name: tls-ca
-
+    
       dataStorage:
         enabled: true
       auditStorage:
