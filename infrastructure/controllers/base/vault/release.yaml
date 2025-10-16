@@ -131,10 +131,10 @@ spec:
 
       ha:
         enabled: false
-        replicas: 5
-        apiAddr: "https://vault.undefinedlab.uk:8200"
-        raft:
-          enabled: true
+        # replicas: 5
+        # apiAddr: "https://vault.undefinedlab.uk:8200"
+        # raft:
+        #   enabled: true
           # setNodeId: true
           # config: |
           #   seal "awskms" {
