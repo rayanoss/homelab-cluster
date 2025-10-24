@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vso-ca-export
+  namespace: vault-secrets-operator
+spec:
+  secretName: tls-ca
+  commonName: dummy.vault-secrets-operator.local
+  dnsNames:
+    - dummy.vault-secrets-operator.local
+  issuerRef:
+    name: self-signed-issuer
+    kind: ClusterIssuer
