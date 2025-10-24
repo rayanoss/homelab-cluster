@@ -48,13 +48,13 @@ spec:
         repository: "hashicorp/vault"
         tag: "1.16.1"
 
-      # readinessProbe:
-      #   enabled: true
-      #   path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
-      # livenessProbe:
-      #   enabled: true
-      #   path: "/v1/sys/health?standbyok=true"
-      #   initialDelaySeconds: 60
+      readinessProbe:
+        enabled: true
+        path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
+      livenessProbe:
+        enabled: true
+        path: "/v1/sys/health?standbyok=true"
+        initialDelaySeconds: 60
 
       # volumes:
       #   - name: downward
@@ -90,13 +90,13 @@ spec:
         # VAULT_K8S_NAMESPACE_FILE: /vault/downward/ns
         VAULT_CACERT: /vault/userconfig/vault-internal-tls-secret/ca.crt
 
-      # extraSecretEnvironmentVars:
-      #   - envName: AWS_ACCESS_KEY_ID
-      #     secretName: eks-creds
-      #     secretKey: AWS_ACCESS_KEY_ID
-      #   - envName: AWS_SECRET_ACCESS_KEY
-      #     secretName: eks-creds
-      #     secretKey: AWS_SECRET_ACCESS_KEY
+      extraSecretEnvironmentVars:
+        - envName: AWS_ACCESS_KEY_ID
+          secretName: eks-creds
+          secretKey: AWS_ACCESS_KEY_ID
+        - envName: AWS_SECRET_ACCESS_KEY
+          secretName: eks-creds
+          secretKey: AWS_SECRET_ACCESS_KEY
 
       extraVolumes:
         - type: secret
@@ -118,10 +118,10 @@ spec:
           enabled: true
           setNodeId: true
           config: |
-            # seal "awskms" {
-            #   region     = "eu-west-3"
-            #   kms_key_id = "7bfdde74-57d0-4382-88aa-2cef282369cb"
-            # }
+            seal "awskms" {
+              region     = "eu-west-3"
+              kms_key_id = "7bfdde74-57d0-4382-88aa-2cef282369cb"
+            }
             ui = true
             cluster_name = "vault-integrated-storage"
             listener "tcp" {
