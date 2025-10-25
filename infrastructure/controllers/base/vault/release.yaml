@@ -88,6 +88,9 @@ spec:
       extraEnvironmentVars:
         # VAULT_K8S_POD_NAME_FILE: /vault/downward/pod
         # VAULT_K8S_NAMESPACE_FILE: /vault/downward/ns
+        AWS_REGION: eu-west-3
+        VAULT_SEAL_TYPE: "awskms"
+        VAULT_AWSKMS_SEAL_KEY_ID: "7bfdde74-57d0-4382-88aa-2cef282369cb"
         VAULT_CACERT: /vault/userconfig/vault-internal-tls-secret/ca.crt
 
       extraSecretEnvironmentVars:
@@ -118,10 +121,6 @@ spec:
           enabled: true
           setNodeId: true
           config: |
-            seal "awskms" {
-              region     = "eu-west-3"
-              kms_key_id = "7bfdde74-57d0-4382-88aa-2cef282369cb"
-            }
             ui = true
             cluster_name = "vault-integrated-storage"
             listener "tcp" {
