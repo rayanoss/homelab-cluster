@@ -81,13 +81,6 @@ spec:
           failureThreshold: 6
 
     core:
-      resources:
-        requests:
-          cpu: 3m
-          memory: 64Mi
-        limits:
-          cpu: 3m
-          memory: 64Mi
       startupProbe:
         enabled: true
         initialDelaySeconds: 15
