@@ -23,6 +23,18 @@ spec:
         limits:
           cpu: 15m
           memory: 48Mi
+      livenessProbe:
+        enabled: true
+        initialDelaySeconds: 15
+        periodSeconds: 10
+        timeoutSeconds: 5
+        failureThreshold: 6
+      readinessProbe:
+        enabled: true
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        timeoutSeconds: 5
+        failureThreshold: 6
 
     registry:
       server:
@@ -33,6 +45,18 @@ spec:
           limits:
             cpu: 2m
             memory: 32Mi
+        livenessProbe:
+          enabled: true
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 6
+        readinessProbe:
+          enabled: true
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 6
 
     postgresql:
       primary:
@@ -43,6 +67,19 @@ spec:
           limits:
             cpu: 15m
             memory: 64Mi
+        livenessProbe:
+          enabled: true
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 6
+        readinessProbe:
+          enabled: true
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 6
+
     core:
       resources:
         requests:
@@ -51,6 +88,25 @@ spec:
         limits:
           cpu: 3m
           memory: 64Mi
+      startupProbe:
+        enabled: true
+        initialDelaySeconds: 15
+        periodSeconds: 10
+        timeoutSeconds: 5
+        failureThreshold: 60
+      livenessProbe:
+        enabled: true
+        initialDelaySeconds: 15
+        periodSeconds: 10
+        timeoutSeconds: 5
+        failureThreshold: 6
+      readinessProbe:
+        enabled: true
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        timeoutSeconds: 5
+        failureThreshold: 6
+
     expose:
       tls:
         certSource: secret
