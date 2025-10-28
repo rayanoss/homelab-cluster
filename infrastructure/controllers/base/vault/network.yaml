@@ -48,7 +48,7 @@ spec:
           protocol: TCP
     - to:
         - ipBlock:
-            cidr: 35.180.0.0/16
+            cidr: 0.0.0.0/0
       ports:
         - port: 443
           protocol: TCP
