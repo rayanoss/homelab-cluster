@@ -26,8 +26,6 @@ spec:
                 - keyless:
                     issuer: "https://gitlab.com"
                     subject: "https://gitlab.com/rayanoss-group/test-app//.gitlab-ci.yml@refs/heads/main"
-          repositories:
-            - "harbor.undefinedlab.uk/test"
           imageRegistryCredentials:
             secrets:
-              - name: harbor-credentials
+              - harbor-credentials
