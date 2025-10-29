@@ -1,0 +1,33 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-signed-images
+spec:
+  webhookConfiguration:
+    failurePolicy: Fail
+    timeoutSeconds: 30
+  validationFailureAction: enforce
+  background: false
+  rules:
+    - name: check-image-signature
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+              namespaces:
+                - test-app
+      verifyImages:
+        - imageReferences:
+            - "harbor.undefinedlab.uk/test/*"
+          failureAction: Enforce
+          attestors:
+            - entries:
+                - keyless:
+                    issuer: "https://gitlab.com"
+                    subject: "https://gitlab.com/rayanoss-group/test-app//.gitlab-ci.yml@refs/heads/main"
+          repositories:
+            - "harbor.undefinedlab.uk/test"
+          imageRegistryCredentials:
+            secrets:
+              - name: harbor-credentials
