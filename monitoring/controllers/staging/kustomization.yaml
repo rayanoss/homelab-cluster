@@ -1,6 +1,7 @@
   apiVersion: kustomize.config.k8s.io/v1beta1
   kind: Kustomization
+  namespace: monitoring
   resources:
-    - ../base/namespace.yaml
-    - kube-prometheus-stack
-    - loki
+    - namespace.yaml
+    - ../../base/kube-prometheus-stack/
+    - ../../base/loki/
