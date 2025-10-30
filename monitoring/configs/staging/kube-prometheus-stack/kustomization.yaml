@@ -3,3 +3,4 @@ kind: Kustomization
 resources: 
   # - grafana-tls-secret.yaml
   - certificate.yaml
+  - flux-pod-monitor.yaml
