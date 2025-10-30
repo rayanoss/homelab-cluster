@@ -25,15 +25,6 @@ spec:
       - paths: ["/metadata/annotations/prometheus-operator-validated"]
         target:
           kind: PrometheusRule
-  values:
-    prometheusOperator:
-      resources:
-        requests:
-          cpu: 2m
-          memory: 48Mi
-        limits:
-          cpu: 2m
-          memory: 48Mi
     grafana:
       adminPassword: rayane
       ingress:
