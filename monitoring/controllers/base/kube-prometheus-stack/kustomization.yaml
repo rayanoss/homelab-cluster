@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - repository.yaml
+  - kube-state-metrics-config.yaml
   - release.yaml
