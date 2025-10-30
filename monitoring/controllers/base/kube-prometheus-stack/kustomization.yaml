@@ -3,9 +3,8 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - repository.yaml
-  - kube-state-metrics-config.yaml
   - release.yaml
-  
+
 configMapGenerator:
   - name: flux-kube-state-metrics-config
     files:
