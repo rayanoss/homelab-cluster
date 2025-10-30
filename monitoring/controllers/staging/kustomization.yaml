@@ -3,5 +3,5 @@
   namespace: monitoring
   resources:
     - namespace.yaml
-    - ../../base/kube-prometheus-stack/
-    - ../../base/loki/
+    - ../base/kube-prometheus-stack/
+    - ../base/loki/
