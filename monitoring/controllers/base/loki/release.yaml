@@ -39,13 +39,15 @@ spec:
     test:
       enabled: false
 
+    # All loki settings combined under one key
     loki:
       auth_enabled: false
       commonConfig:
         replication_factor: 1
-      storage_config:
+      storage:
+        type: filesystem
         filesystem:
-          directory: /var/loki/chunks
+          chunks_directory: /var/loki/chunks
+          rules_directory: /var/loki/rules
       useTestSchema: true
-
         
