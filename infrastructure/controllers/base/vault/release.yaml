@@ -37,8 +37,8 @@ spec:
         tlsConfig:
           insecureSkipVerify: true
         selectors:
-          app.kubernetes.io/component: monitoring
-
+          release: kube-prometheus-stack
+          
     server:
       statefulSet:
         securityContext:
