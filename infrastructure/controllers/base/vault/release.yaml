@@ -34,15 +34,15 @@ spec:
         interval: 30s
         scrapeTimeout: 10s
         tlsConfig:
-          insecureSkipVerify: false
-          ca:
-            secret:
-              name: vault-internal-tls-secret
-              key: ca.crt
-        authorization:
-          credentials:
-            name: vault-metrics-token
-            key: token
+          insecureSkipVerify: true
+        #   ca:
+        #     secret:
+        #       name: vault-internal-tls-secret
+        #       key: ca.crt
+        # authorization:
+        #   credentials:
+        #     name: vault-metrics-token
+        #     key: token
         selectors:
           release: kube-prometheus-stack
           
