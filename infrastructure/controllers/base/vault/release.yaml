@@ -36,7 +36,8 @@ spec:
         scrapeTimeout: 10s
         tlsConfig:
           insecureSkipVerify: true
-        selectors: {} 
+        selectors:
+          release: kube-prometheus-stack
           
 
     server:
