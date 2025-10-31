@@ -34,6 +34,7 @@ spec:
         interval: 30s
         scrapeTimeout: 10s
         tlsConfig:
+          serverName: vault-active.vault.svc
           ca:
             secret:
               name: vault-internal-tls-secret
