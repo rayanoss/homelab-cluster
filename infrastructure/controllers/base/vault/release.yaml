@@ -120,7 +120,7 @@ spec:
               tls_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
 
               telemetry {
-                unauthenticated_metrics_access = "true"
+                unauthenticated_metrics_access = true
               }
             }
 
