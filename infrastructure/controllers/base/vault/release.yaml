@@ -25,10 +25,9 @@ spec:
       serverTelemetry:
         prometheusOperator: true
 
-
     injector:
       enabled: false
-   
+
     serverTelemetry:
       serviceMonitor:
         enabled: true
@@ -40,9 +39,11 @@ spec:
             secret:
               name: vault-internal-tls-secret
               key: ca.crt
-        selectors:
-          release: kube-prometheus-stack
-          
+        authorization:
+          credentials:
+            name: vault-metrics-token
+            key: token
+
     server:
       statefulSet:
         securityContext:
@@ -63,6 +64,7 @@ spec:
         name: vault
         serviceDiscovery:
           enabled: true
+
       ingress:
         enabled: false
         ingressClassName: traefik
@@ -79,7 +81,6 @@ spec:
         path: "/v1/sys/health?standbyok=true"
         initialDelaySeconds: 60
 
-  
       extraEnvironmentVars:
         AWS_REGION: eu-west-3
         VAULT_SEAL_TYPE: "awskms"
@@ -97,7 +98,7 @@ spec:
       extraVolumes:
         - type: secret
           name: vault-internal-tls-secret
-    
+
       dataStorage:
         enabled: true
       auditStorage:
@@ -109,13 +110,13 @@ spec:
       ha:
         enabled: true
         replicas: 5
-        # apiAddr: "https://vault.undefinedlab.uk:8200"
         raft:
           enabled: true
           setNodeId: true
           config: |
             ui = true
             cluster_name = "vault-integrated-storage"
+
             listener "tcp" {
               address = "[::]:8200"
               cluster_address = "[::]:8201"
@@ -167,10 +168,12 @@ spec:
             }
 
             service_registration "kubernetes" {}
+
         active:
           enabled: true
         standby:
           enabled: true
+
       ui:
         enabled: true
         serviceType: "ClusterIP"
