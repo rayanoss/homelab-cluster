@@ -3,6 +3,9 @@ kind: PodMonitor
 metadata:
   name: test-app-db-monitor
   namespace: monitoring 
+  labels:
+    app.kubernetes.io/part-of: test-app
+    app.kubernetes.io/component: monitoring
 spec:
   namespaceSelector:
     matchNames:
