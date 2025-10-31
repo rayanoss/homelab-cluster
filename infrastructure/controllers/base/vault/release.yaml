@@ -34,11 +34,10 @@ spec:
         interval: 30s
         scrapeTimeout: 10s
         tlsConfig:
-          insecureSkipVerify: true
-        #   ca:
-        #     secret:
-        #       name: vault-internal-tls-secret
-        #       key: ca.crt
+          ca:
+            secret:
+              name: vault-internal-tls-secret
+              key: ca.crt
         # authorization:
         #   credentials:
         #     name: vault-metrics-token
