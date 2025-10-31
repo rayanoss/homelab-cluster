@@ -8,4 +8,6 @@ resources:
   - release.yaml
   - self-certificate.yaml
   - ingress.yaml
+  - secret.yaml
+
   # - network.yaml
