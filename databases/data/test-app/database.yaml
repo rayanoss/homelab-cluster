@@ -8,17 +8,17 @@ spec:
   #     source: clusterBackup
  
 
-  # backup:
-  #   barmanObjectStore:
-  #     destinationPath: s3://test-app-db-cnpg-backup/
-  #     s3Credentials:
-  #       accessKeyId:
-  #         name: aws-creds
-  #         key: AWS_ACCESS_KEY_ID
-  #       secretAccessKey:
-  #         name: aws-creds
-  #         key: AWS_SECRET_ACCESS_KEY
-  #   retentionPolicy: 1d
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://test-app-db-cnpg-backup/
+      s3Credentials:
+        accessKeyId:
+          name: aws-creds
+          key: AWS_ACCESS_KEY_ID
+        secretAccessKey:
+          name: aws-creds
+          key: AWS_SECRET_ACCESS_KEY
+    retentionPolicy: 1d
 
   # externalClusters:
   #   - name: clusterBackup
