@@ -45,7 +45,6 @@ spec:
         #     key: token
         selectors:
           release: kube-prometheus-stack
-          
 
     server:
       statefulSet:
@@ -74,7 +73,7 @@ spec:
 
       # image:
       #   repository: "hashicorp/vault"
-        # tag: "1.16.1"
+      # tag: "1.16.1"
 
       readinessProbe:
         enabled: true
@@ -134,6 +133,7 @@ spec:
             telemetry {
               prometheus_retention_time = "30s"
               disable_hostname = true
+              unauthenticated_metrics_access = true
             }
 
             storage "raft" {
