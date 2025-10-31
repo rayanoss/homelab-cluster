@@ -22,9 +22,22 @@ spec:
     global:
       enabled: true
       tlsDisable: false
+      serverTelemetry:
+        prometheusOperator: true
+
 
     injector:
       enabled: false
+   
+    serverTelemetry:
+      serviceMonitor:
+        enabled: true
+        interval: 30s
+        scrapeTimeout: 10s
+        tlsConfig:
+          insecureSkipVerify: true
+        selectors:
+          app.kubernetes.io/component: monitoring
 
     server:
       statefulSet:
@@ -89,17 +102,7 @@ spec:
       standalone:
         enabled: false
 
-      serverTelemetry:
-        prometheusOperator: true
-
-      serviceMonitor:
-        enabled: true
-        interval: 30s
-        scrapeTimeout: 10s
-        tlsConfig:
-          insecureSkipVerify: true
-        selectors:
-          app.kubernetes.io/component: monitoring
+      
 
       ha:
         enabled: true
