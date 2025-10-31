@@ -4,3 +4,4 @@ resources:
   # - grafana-tls-secret.yaml
   - certificate.yaml
   - flux-pod-monitor.yaml
+  - test-app-db-monitor.yaml
