@@ -124,10 +124,6 @@ spec:
               cluster_address = "[::]:8201"
               tls_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
               tls_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
-
-              telemetry {
-                unauthenticated_metrics_access = true
-              }
             }
 
             telemetry {
