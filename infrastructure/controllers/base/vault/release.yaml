@@ -28,14 +28,21 @@ spec:
     injector:
       enabled: false
 
-
     serverTelemetry:
       serviceMonitor:
         enabled: true
         interval: 30s
         scrapeTimeout: 10s
         tlsConfig:
-          insecureSkipVerify: true
+          insecureSkipVerify: false
+          ca:
+            secret:
+              name: vault-internal-tls-secret
+              key: ca.crt
+        authorization:
+          credentials:
+            name: vault-metrics-token
+            key: token
         selectors:
           release: kube-prometheus-stack
           
@@ -65,9 +72,9 @@ spec:
         enabled: false
         ingressClassName: traefik
 
-      image:
-        repository: "hashicorp/vault"
-        tag: "1.16.1"
+      # image:
+      #   repository: "hashicorp/vault"
+        # tag: "1.16.1"
 
       readinessProbe:
         enabled: true
@@ -120,7 +127,7 @@ spec:
               tls_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
 
               telemetry {
-                unauthenticated_metrics_access = true
+                unauthenticated_metrics_access = "true"
               }
             }
 
