@@ -43,6 +43,9 @@ spec:
           credentials:
             name: vault-metrics-token
             key: token
+        selectors:
+          release: kube-prometheus-stack
+          
 
     server:
       statefulSet:
