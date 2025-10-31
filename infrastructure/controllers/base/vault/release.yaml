@@ -107,7 +107,7 @@ spec:
       ha:
         enabled: true
         replicas: 5
-        apiAddr: "https://vault.undefinedlab.uk:8200"
+        # apiAddr: "https://vault.undefinedlab.uk:8200"
         raft:
           enabled: true
           setNodeId: true
