@@ -32,20 +32,11 @@ spec:
     
   values:
     prometheus:
-<<<<<<< HEAD
-      prometheusSpec:
-        retention: 24h
-        podMonitorNamespaceSelector: { }
-        podMonitorSelector:
-          matchLabels:
-            app.kubernetes.io/component: monitoring
-=======
     prometheusSpec:
       retention: 1h
       scrapeInterval: 1m
       evaluationInterval: 1m
 
->>>>>>> 63c240c (.)
     grafana:
       additionalDataSources:
         - name: Loki
