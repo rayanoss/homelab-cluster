@@ -9,4 +9,5 @@ resources:
   - self-certificate.yaml
   - ingress.yaml
   - secret.yaml
+  - vault-promtail-config.yaml.yaml
 
