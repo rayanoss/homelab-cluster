@@ -95,6 +95,17 @@ spec:
           secretName: eks-creds
           secretKey: AWS_SECRET_ACCESS_KEY
 
+      extraContainers:
+        - name: promtail
+          image: grafana/promtail:3.5
+          args:
+            - -config.file=/etc/promtail/config.yaml
+          volumeMounts:
+            - name: audit      
+              mountPath: /vault/audit
+            - name: promtail-config
+              mountPath: /etc/promtail
+
       extraVolumes:
         - type: secret
           name: vault-internal-tls-secret
@@ -114,16 +125,7 @@ spec:
       standalone:
         enabled: false
 
-      extraContainers:
-        - name: promtail
-          image: grafana/promtail:2.9.0
-          args:
-            - -config.file=/etc/promtail/config.yaml
-          volumeMounts:
-            - name: audit-storage
-              mountPath: /vault/audit
-            - name: promtail-config
-              mountPath: /etc/promtail
+    
 
        
       ha:
