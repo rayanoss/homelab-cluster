@@ -103,6 +103,10 @@ spec:
         enabled: true
       auditStorage:
         enabled: true
+        size: 10Gi
+        storageClass: local-path
+        mountPath: /vault/audit
+
 
       standalone:
         enabled: false
@@ -131,30 +135,35 @@ spec:
 
             storage "raft" {
               path = "/vault/data"
+              
               retry_join {
                 leader_api_addr = "https://vault-0.vault-internal:8200"
                 leader_ca_cert_file = "/vault/userconfig/vault-internal-tls-secret/ca.crt"
                 leader_client_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
                 leader_client_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
               }
+              
               retry_join {
                 leader_api_addr = "https://vault-1.vault-internal:8200"
                 leader_ca_cert_file = "/vault/userconfig/vault-internal-tls-secret/ca.crt"
                 leader_client_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
                 leader_client_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
               }
+
               retry_join {
                 leader_api_addr = "https://vault-2.vault-internal:8200"
                 leader_ca_cert_file = "/vault/userconfig/vault-internal-tls-secret/ca.crt"
                 leader_client_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
                 leader_client_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
               }
+              
               retry_join {
                 leader_api_addr = "https://vault-3.vault-internal:8200"
                 leader_ca_cert_file = "/vault/userconfig/vault-internal-tls-secret/ca.crt"
                 leader_client_cert_file = "/vault/userconfig/vault-internal-tls-secret/tls.crt"
                 leader_client_key_file = "/vault/userconfig/vault-internal-tls-secret/tls.key"
               }
+              
               retry_join {
                 leader_api_addr = "https://vault-4.vault-internal:8200"
                 leader_ca_cert_file = "/vault/userconfig/vault-internal-tls-secret/ca.crt"
