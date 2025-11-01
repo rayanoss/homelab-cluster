@@ -45,18 +45,18 @@ spec:
           release: kube-prometheus-stack
 
     server:
-      securityContext:
-        pod:
-          runAsNonRoot: true
-          runAsUser: 100
-          runAsGroup: 1000
-          fsGroup: 1000
-        container:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          capabilities:
-            drop:
-              - ALL
+      # securityContext:
+      #   pod:
+      #     runAsNonRoot: true
+      #     runAsUser: 100
+      #     runAsGroup: 1000
+      #     fsGroup: 1000
+      #   container:
+      #     allowPrivilegeEscalation: false
+      #     readOnlyRootFilesystem: true
+      #     capabilities:
+      #       drop:
+      #         - ALL
 
       affinity: null
       serviceAccount:
