@@ -25,7 +25,7 @@ spec:
             - entries:
                 - keyless:
                     issuer: "https://gitlab.com"
-                    subject: "https://gitlab.com/rayanoss-group/test-app//.gitlab-ci.yml@refs/heads/main"
+                    subject: "https://gitlab.com/rayanoss-group/rayanoss-project//.gitlab-ci.yml@refs/heads/main"
                     rekor:
                       url: "https://rekor.sigstore.dev"
           imageRegistryCredentials:
