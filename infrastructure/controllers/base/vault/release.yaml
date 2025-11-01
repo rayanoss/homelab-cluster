@@ -98,6 +98,9 @@ spec:
       extraVolumes:
         - type: secret
           name: vault-internal-tls-secret
+        - name: promtail-config
+          configMap:
+            name: vault-promtail-config
 
       dataStorage:
         enabled: true
@@ -111,6 +114,18 @@ spec:
       standalone:
         enabled: false
 
+      extraContainers:
+        - name: promtail
+          image: grafana/promtail:2.9.0
+          args:
+            - -config.file=/etc/promtail/config.yaml
+          volumeMounts:
+            - name: audit-storage
+              mountPath: /vault/audit
+            - name: promtail-config
+              mountPath: /etc/promtail
+
+       
       ha:
         enabled: true
         replicas: 5
