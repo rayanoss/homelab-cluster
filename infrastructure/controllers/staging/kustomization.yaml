@@ -9,3 +9,4 @@ resources:
   - vault
   - vault-secrets-operator
   - kyverno
+  - keycloak
