@@ -45,19 +45,19 @@ spec:
           release: kube-prometheus-stack
 
     server:
-      statefulSet:
-        securityContext:
-          pod:
-            runAsNonRoot: true
-            runAsUser: 100
-            runAsGroup: 1000
-            fsGroup: 1000
-          container:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop:
-                - ALL
+      securityContext:
+        pod:
+          runAsNonRoot: true
+          runAsUser: 100
+          runAsGroup: 1000
+          fsGroup: 1000
+        container:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+              - ALL
+
       affinity: null
       serviceAccount:
         create: true
@@ -101,7 +101,7 @@ spec:
           args:
             - -config.file=/etc/promtail/config.yaml
           volumeMounts:
-            - name: audit      
+            - name: audit
               mountPath: /vault/audit
             - name: promtail-config
               mountPath: /etc/promtail
@@ -121,13 +121,9 @@ spec:
         storageClass: local-path
         mountPath: /vault/audit
 
-
       standalone:
         enabled: false
 
-    
-
-       
       ha:
         enabled: true
         replicas: 5
