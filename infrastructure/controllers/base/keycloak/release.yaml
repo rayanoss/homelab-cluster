@@ -7,10 +7,11 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: ./               # use chart content extracted by the OCIRepository
+      chart: keycloak
+      version: 25.2.0
       sourceRef:
-        kind: OCIRepository
-        name: keycloak-oci
+        kind: HelmRepository
+        name: bitnami-oci
         namespace: keycloak
   install:
     crds: Create

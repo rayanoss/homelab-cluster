@@ -1,13 +1,9 @@
 apiVersion: source.toolkit.fluxcd.io/v1
-kind: OCIRepository
+kind: HelmRepository
 metadata:
-  name: keycloak-oci
+  name: bitnami-oci
   namespace: keycloak
 spec:
   interval: 1h
-  url: oci://registry-1.docker.io/bitnamicharts/keycloak
-  ref:
-    tag: "25.2.0"
-  layerSelector:
-    mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
-    operation: extract
+  type: oci
+  url: oci://registry-1.docker.io/bitnamicharts
