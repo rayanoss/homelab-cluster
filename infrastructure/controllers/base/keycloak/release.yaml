@@ -19,7 +19,8 @@ spec:
     crds: CreateReplace
   values:
     image:
-      repository: quay.io/keycloak/keycloak
+      registry: quay.io
+      repository: keycloak/keycloak
       tag: 25.0.2
       # Global PostgreSQL settings
     global:
