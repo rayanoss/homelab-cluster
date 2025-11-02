@@ -71,18 +71,18 @@ spec:
             - keycloak.undefinedlab.uk
           secretName: keycloak-tls-secret
     
-    extraEnvVars:
-      - name: KC_PRODUCTION
-        value: "true"
-      - name: KC_HTTP_ENABLED
-        value: "true"     
-      - name: KC_PROXY
-        value: "edge"
-      - name: KC_HOSTNAME
-        value: "keycloak.undefinedlab.uk"
-      - name: KC_HOSTNAME_STRICT
-        value: "true"
-      - name: VERTX_WORKER_POOL_SIZE
-        value: "20"
-      - name: VERTX_EVENT_LOOP_POOL_SIZE
-        value: "8"
+    # extraEnvVars:
+    #   - name: KC_PRODUCTION
+    #     value: "true"
+    #   - name: KC_HTTP_ENABLED
+    #     value: "true"     
+    #   - name: KC_PROXY
+    #     value: "edge"
+    #   - name: KC_HOSTNAME
+    #     value: "keycloak.undefinedlab.uk"
+    #   - name: KC_HOSTNAME_STRICT
+    #     value: "true"
+    #   - name: VERTX_WORKER_POOL_SIZE
+    #     value: "20"
+    #   - name: VERTX_EVENT_LOOP_POOL_SIZE
+    #     value: "8"
