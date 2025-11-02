@@ -18,8 +18,18 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
-    # ──────────────────────────────────────────────────────────────
-    # Admin user (for a quick start only; consider using SOPS/ExternalSecrets)
+    image:
+      repository: quay.io/keycloak/keycloak
+      tag: 25.0.2
+      # Global PostgreSQL settings
+    global:
+      postgresql:
+        auth:
+          username: bn_keycloak
+          password: bn_keycloak
+          database: bitnami_keycloak
+
+    # Keycloak Admin User Configuration
     auth:
       adminUser: admin
       adminPassword: admin
