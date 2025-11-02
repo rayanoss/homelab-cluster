@@ -75,9 +75,9 @@ spec:
           client_id: grafana
           client_secret: LFwgbxb4KxLsmDZG9FDjNbsE6MtyJCFO
           scopes: openid email profile
-          auth_url: http://192.168.1.87:30080/realms/grafana/protocol/openid-connect/auth
-          token_url: http://keycloak.keycloak.svc.cluster.local:80/realms/grafana/protocol/openid-connect/token
-          api_url: http://keycloak.keycloak.svc.cluster.local:80/realms/grafana/protocol/openid-connect/userinfo
+          auth_url: https://keycloak.undefinedlab.uk/realms/grafana/protocol/openid-connect/auth
+          token_url: httpss://keycloak.undefinedlab.uk/realms/grafana/protocol/openid-connect/token
+          api_url: https://keycloak.undefinedlab.uk/realms/grafana/protocol/openid-connect/userinfo
           role_attribute_path: "contains(realm_access.roles[*], 'admin') && 'Admin' || 'Viewer'"      
           login_attribute_path: preferred_username
           name_attribute_path: name
