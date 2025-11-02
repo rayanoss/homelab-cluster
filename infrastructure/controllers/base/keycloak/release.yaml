@@ -78,3 +78,7 @@ spec:
         value: "keycloak.undefinedlab.uk"
       - name: KC_HOSTNAME_STRICT
         value: "true"
+      - name: VERTX_WORKER_POOL_SIZE
+        value: "20"
+      - name: VERTX_EVENT_LOOP_POOL_SIZE
+        value: "8"
