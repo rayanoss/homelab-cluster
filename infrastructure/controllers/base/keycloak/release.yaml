@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: keycloak
-      version: 24.0.0
+      version: 25.2.0
       sourceRef:
         kind: HelmRepository
         name: bitnami-oci
@@ -19,9 +19,10 @@ spec:
     crds: CreateReplace
   values:
     image:
-      registry: quay.io
-      repository: keycloak/keycloak
-      tag: 25.0.2
+      registry: docker.io
+      repository: bitnamilegacy/keycloak   
+      tag: 25.0.0
+
       # Global PostgreSQL settings
     global:
       postgresql:
