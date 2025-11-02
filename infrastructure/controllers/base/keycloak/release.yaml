@@ -54,7 +54,8 @@ spec:
       user: app          
       database: app      
       existingSecret: keycloak-db-app   
-      
+      existingSecretPasswordKey: password  
+
     service:
       type: ClusterIP
 
