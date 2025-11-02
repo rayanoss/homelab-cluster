@@ -23,3 +23,6 @@ spec:
       ignoreUnfixed: true
     serviceMonitor:
       enabled: true
+      honorLabels: true
+      labels:
+        release: kube-prometheus-stack 
