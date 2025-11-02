@@ -14,6 +14,10 @@ spec:
         name: trivy
         namespace: trivy
       interval: 12h
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
   values:
     trivy:
       ignoreUnfixed: true
