@@ -7,7 +7,7 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: ./
+      chart: ./               # use chart content extracted by the OCIRepository
       sourceRef:
         kind: OCIRepository
         name: keycloak-oci
@@ -17,20 +17,14 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
-      # Global PostgreSQL settings
-    global:
-      postgresql:
-        auth:
-          username: bn_keycloak
-          password: bn_keycloak
-          database: bitnami_keycloak
-
-    # Keycloak Admin User Configuration
+    # ──────────────────────────────────────────────────────────────
+    # Admin user (for a quick start only; consider using SOPS/ExternalSecrets)
     auth:
       adminUser: admin
       adminPassword: admin
 
-    # PostgreSQL Specific Configuration
+    # ──────────────────────────────────────────────────────────────
+    # Built-in PostgreSQL (simple lab setup). Prefer external CNPG in prod.
     postgresql:
       enabled: true
       auth:
@@ -38,23 +32,36 @@ spec:
         password: bn_keycloak
         database: bitnami_keycloak
 
-    # Kubernetes Service Configuration
+    # Global section (Bitnami charts still honor this structure)
+    global:
+      postgresql:
+        auth:
+          username: bn_keycloak
+          password: bn_keycloak
+          database: bitnami_keycloak
+
+    # ──────────────────────────────────────────────────────────────
+    # Service exposure (NodePort for quick testing)
     service:
       type: NodePort
       nodePorts:
         http: 30080
 
-    # Additional Keycloak Environment Variables
+    # ──────────────────────────────────────────────────────────────
+    # Extra env for dev/lab access on plain HTTP (NodePort)
     extraEnvVars:
-      # Enable production mode to prevent thread blocking
       - name: KC_PRODUCTION
-        value: "true"
-
+        value: "true"        # run in production mode
+      - name: KC_HTTP_ENABLED
+        value: "true"        # enable HTTP listener
+      - name: KC_PROXY
+        value: "edge"        # required when running behind k8s services/ingress
       - name: KC_HOSTNAME_STRICT
         value: "false"
-      - name: KC_HTTP_ENABLED
-        value: "true"
-
+      # Optional (set this if you’ll access via a hostname)
+      # - name: KC_HOSTNAME
+      #   value: "keycloak.localtest.me"
+      # Tuning (optional)
       - name: VERTX_WORKER_POOL_SIZE
         value: "20"
       - name: VERTX_EVENT_LOOP_POOL_SIZE
