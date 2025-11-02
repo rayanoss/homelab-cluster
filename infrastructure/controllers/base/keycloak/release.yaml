@@ -43,14 +43,6 @@ spec:
         password: bn_keycloak
         database: bitnami_keycloak
 
-    # Global section (Bitnami charts still honor this structure)
-    global:
-      postgresql:
-        auth:
-          username: bn_keycloak
-          password: bn_keycloak
-          database: bitnami_keycloak
-
     # ──────────────────────────────────────────────────────────────
     # Service exposure (NodePort for quick testing)
     service:
