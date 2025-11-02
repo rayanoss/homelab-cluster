@@ -10,7 +10,7 @@ spec:
       chart: ./
       sourceRef:
         kind: OCIRepository
-        name: bitnami-keycloak
+        name: keycloak-oci
         namespace: keycloak
   install:
     crds: Create
