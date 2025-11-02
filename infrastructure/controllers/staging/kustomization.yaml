@@ -10,4 +10,4 @@ resources:
   - vault-secrets-operator
   - kyverno
   - keycloak
-  - trivy
+  - trivy-operator
