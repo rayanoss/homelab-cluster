@@ -20,8 +20,9 @@ spec:
   values:
     image:
       registry: docker.io
-      repository: bitnamilegacy/keycloak   
-      tag: 25.0.0
+      repository: bitnamilegacy/keycloak
+      tag: 26.3.3-debian-12-r0   # image Legacy figée
+      pullPolicy: IfNotPresent
 
       # Global PostgreSQL settings
     global:
