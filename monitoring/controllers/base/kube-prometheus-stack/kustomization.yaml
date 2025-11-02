@@ -5,6 +5,7 @@ namespace: monitoring
 resources:
   - namespace.yaml
   - repository.yaml
+  - slack-webhook.secret.yaml
   - release.yaml
 
 configMapGenerator:
