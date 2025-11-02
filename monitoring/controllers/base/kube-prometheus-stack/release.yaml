@@ -32,11 +32,12 @@ spec:
     
   values:
     prometheus:
-    prometheusSpec:
-      remoteWriteDashboards: true
-      retention: 1h
-      scrapeInterval: 1m
-      evaluationInterval: 1m
+      enabled: true
+    # prometheusSpec:
+    #   remoteWriteDashboards: true
+    #   retention: 1h
+    #   scrapeInterval: 1m
+    #   evaluationInterval: 1m
 
     grafana:
       assertNoLeakedSecrets: false
