@@ -21,10 +21,9 @@ spec:
     image:
       registry: docker.io
       repository: bitnamilegacy/keycloak
-      tag: 26.3.3-debian-12-r0   # image Legacy figée
+      tag: 26.3.3-debian-12-r0   
       pullPolicy: IfNotPresent
 
-      # Global PostgreSQL settings
     global:
       postgresql:
         auth:
@@ -32,7 +31,6 @@ spec:
           password: bn_keycloak
           database: bitnami_keycloak
 
-    # Keycloak Admin User Configuration
     auth:
       adminUser: admin
       adminPassword: admin
@@ -40,18 +38,23 @@ spec:
     # ──────────────────────────────────────────────────────────────
     # Built-in PostgreSQL (simple lab setup). Prefer external CNPG in prod.
     postgresql:
-      enabled: true
-      image:
-        registry: docker.io
-        repository: bitnamilegacy/postgresql
-        tag: 17.6.0-debian-12-r0
-      auth:
-        username: bn_keycloak
-        password: bn_keycloak
-        database: bitnami_keycloak
+      enabled: false
+      # image:
+      #   registry: docker.io
+      #   repository: bitnamilegacy/postgresql
+      #   tag: 17.6.0-debian-12-r0
+      # auth:
+      #   username: bn_keycloak
+      #   password: bn_keycloak
+      #   database: bitnami_keycloak
 
-    # ──────────────────────────────────────────────────────────────
-    # Service exposure (NodePort for quick testing)
+    externalDatabase:
+      host: keycloak-db-rw.keycloak.svc.cluster.local
+      port: 5432
+      user: app          
+      database: app      
+      existingSecret: keycloak-db-app   
+      
     service:
       type: ClusterIP
 
@@ -61,7 +64,7 @@ spec:
       hostname: keycloak.undefinedlab.uk
       tls: true
       annotations:
-        cert-manager.io/cluster-issuer: letsencrypt  # ton ClusterIssuer
+        cert-manager.io/cluster-issuer: letsencrypt 
       extraTls:
         - hosts:
             - keycloak.undefinedlab.uk
