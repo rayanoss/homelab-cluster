@@ -5,6 +5,7 @@ metadata:
    prometheus: example-rules
    role: alert-rules
  name: prom
+ namespace: monitoring
 spec:
  groups:
    - name: "prom.rules"
