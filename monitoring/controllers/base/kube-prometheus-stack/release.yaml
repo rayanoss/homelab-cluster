@@ -73,10 +73,10 @@ spec:
           name: Keycloak
           allow_sign_up: true
           client_id: grafana
-          client_secret: LFwgbxb4KxLsmDZG9FDjNbsE6MtyJCFO
+          client_secret: 1rcD7wwnFYBFGtAHi7cnJNF2vhq9khkO
           scopes: openid email profile
           auth_url: https://keycloak.undefinedlab.uk/realms/grafana/protocol/openid-connect/auth
-          token_url: httpss://keycloak.undefinedlab.uk/realms/grafana/protocol/openid-connect/token
+          token_url: https://keycloak.undefinedlab.uk/realms/grafana/protocol/openid-connect/token
           api_url: https://keycloak.undefinedlab.uk/realms/grafana/protocol/openid-connect/userinfo
           role_attribute_path: "contains(realm_access.roles[*], 'admin') && 'Admin' || 'Viewer'"      
           login_attribute_path: preferred_username
