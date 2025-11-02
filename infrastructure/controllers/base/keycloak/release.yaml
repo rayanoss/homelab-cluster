@@ -3,17 +3,15 @@ kind: HelmRelease
 metadata:
   name: keycloak
   namespace: keycloak
-spec: 
+spec:
   interval: 30m
   chart:
     spec:
-      chart: "keycloak"
-      version: "25.2.0"
+      chart: ./
       sourceRef:
-        kind: HelmRepository
-        name: bitnami
+        kind: OCIRepository
+        name: bitnami-keycloak
         namespace: keycloak
-      interval: 12h
   install:
     crds: Create
   upgrade:
