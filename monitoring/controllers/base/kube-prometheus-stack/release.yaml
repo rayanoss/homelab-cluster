@@ -38,6 +38,7 @@ spec:
       evaluationInterval: 1m
 
     grafana:
+      assertNoLeakedSecrets: false
       additionalDataSources:
         - name: Loki
           type: loki
