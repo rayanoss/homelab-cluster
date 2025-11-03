@@ -9,5 +9,5 @@ resources:
   - vault
   - vault-secrets-operator
   # - kyverno
-  - keycloak
-  - trivy-operator
+  # - keycloak
+  # - trivy-operator

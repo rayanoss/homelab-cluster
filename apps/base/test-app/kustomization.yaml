@@ -6,5 +6,5 @@ resources:
   - secrets.yaml
   - harbor-secret.yaml
   # - image-policy.yaml
-  - release.yaml
   - certificate.yaml
+  - release.yaml
