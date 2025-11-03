@@ -10,7 +10,7 @@ spec:
       chart: ./charts/test-app  
       sourceRef:
         kind: GitRepository
-        name: homelab-cluster
+        name: flux-system
         namespace: flux-system
       interval: 12h
-  values:
+
