@@ -38,15 +38,15 @@ spec:
     prometheus:
       enabled: true
       prometheusSpec:
-      serviceMonitorSelectorNilUsesHelmValues: false
-      serviceMonitorSelector: {}
-      serviceMonitorNamespaceSelector: {}
-      ruleSelector:
-        matchExpressions:
-          - key: prometheus
-            operator: In
-            values:
-            - example-rules
+        serviceMonitorSelectorNilUsesHelmValues: false
+        serviceMonitorSelector: {}
+        serviceMonitorNamespaceSelector: {}
+        ruleSelector:
+          matchExpressions:
+            - key: prometheus
+              operator: In
+              values:
+              - example-rules
 
     grafana:
       assertNoLeakedSecrets: false
