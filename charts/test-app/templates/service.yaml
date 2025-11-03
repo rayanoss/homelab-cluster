@@ -16,5 +16,5 @@ spec:
     {{- end }}
     {{- end }}
   selector:
-    {{ include "test-app.selectorLabels" . | nindent 4 }}
+    {{- include "test-app.selectorLabels" . | nindent 4 }}
 {{- end }}
