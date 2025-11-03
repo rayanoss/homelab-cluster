@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "test-app.fullname" . }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "test-app.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "test-app.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+
+      {{- with .Values.securityContext }}
+      securityContext:
+      {{ toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ include "test-app.name" . }}
+          {{- with .Values.containers.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+
+          image: >-
+            {{- if .Values.image.digest -}}
+              {{ .Values.image.repository }}@{{ .Values.image.digest }}
+            {{- else -}}
+              {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
+            {{- end -}}
+          imagePullPolicy: {{ .Values.image.pullPolicy | default "IfNotPresent" }}
+
+          ports:
+            - name: http
+              containerPort: 3000
+
+          {{- with .Values.env.secrets }}
+          env:
+            {{- range . }}
+            - name: {{ .name }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .secretName }}
+                  key: {{ .key }}
+            {{- end }}
+          {{- end }}
+          

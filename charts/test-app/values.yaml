@@ -1,0 +1,70 @@
+replicaCount: 1
+
+autoscaling:
+  enabled: false
+
+  
+securityContext:
+  fsGroup: 33
+  runAsUser: 33
+  runAsGroup: 33
+
+imagePullSecrets:
+  - name: harbor-credentials
+
+
+image:
+  repository: harbor.undefinedlab.uk/test/test-app
+  tag: ""
+  digest: "sha256:08682f98a46df9aaeff84a4412ec8983b16201301e53349c96334a9b33dcdf3d"
+  pullPolicy: IfNotPresent
+
+env:
+  secrets:
+    - name: DB_USER
+      secretName: postgres
+      key: username
+    - name: DB_PASSWORD
+      secretName: postgres
+      key: password
+    - name: DB_HOST
+      secretName: test-app-db-app
+      key: host
+    - name: DB_NAME
+      secretName: test-app-db-app
+      key: dbname
+
+containers:
+  securityContext:
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
+
+
+service:
+  enabled: true
+  type: ClusterIP
+  annotations: {}
+  labels: {}
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
+      protocol: TCP
+
+ingress:
+  enabled: true
+  kind: IngressRoute                 
+  host: test.undefinedlab.uk
+  entryPoints:
+    - web
+    - websecure
+  tls:
+    enabled: true                    
+    certResolver: ""                 
+    secretName: test-app-tls-secret                 
+  routes:
+    - match: Host(`test.undefinedlab.uk`)
+  service:
+    port: 3000
+    scheme: http                      
+

@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: test-app
+  namespace: test-app
+spec:
+  secretName: test-app-tls-secret
+  privateKey:
+    rotationPolicy: Always
+  commonName: test.undefinedlab.uk
+  dnsNames:
+    - test.undefinedlab.uk
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer

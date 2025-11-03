@@ -46,10 +46,3 @@ spec:
                   key: dbname
           securityContext:
             allowPrivilegeEscalation: false
-          resources:
-            requests:
-              cpu: 5m
-              memory: 32Mi
-            limits:
-              cpu: 5m
-              memory: 32Mi
