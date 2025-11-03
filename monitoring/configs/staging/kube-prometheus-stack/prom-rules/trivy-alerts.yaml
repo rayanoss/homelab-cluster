@@ -30,7 +30,7 @@ spec:
          summary: Trivy missing
          type: Container
      - alert: trivy_new_critical_vuln
-       expr: increase(trivy_image_vulnerabilities{severity="Critical"}[30m]) >= 1
+       expr: trivy_image_vulnerabilities{severity="Critical", namespace="test-alert"} > 0
        for: 30s
        labels:
          severity: warning
