@@ -30,7 +30,7 @@ spec:
     name: flux-kube-state-metrics-config
     valuesKey: kube-state-metrics-config.yaml
   - kind: Secret
-    name: am-slack-webhook
+    name: slack-webhook
     valuesKey: slack_api_url
     targetPath: alertmanager.config.global.slack_api_url
     
