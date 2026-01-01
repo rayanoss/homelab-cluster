@@ -3,8 +3,8 @@ kind: Pod
 metadata:
   creationTimestamp: null
   labels:
-    run: nginx
-  name: nginx
+    run: pod-fail
+  name: pod-fail
 spec:
   containers:
   - image: nginx

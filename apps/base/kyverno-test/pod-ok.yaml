@@ -3,12 +3,12 @@ kind: Pod
 metadata:
   creationTimestamp: null
   labels:
-    run: nginx
-  name: nginx
+    run: pod-ok
+  name: pod-ok
 spec:
   containers:
-  - image: nginx
-    name: nginx
+  - image: ghcr.io/rayanoss/kyverno-cosign:v1.0.0
+    name: pod-ok
     resources: {}
   dnsPolicy: ClusterFirst
   restartPolicy: Always
