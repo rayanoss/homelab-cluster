@@ -8,6 +8,6 @@ resources:
   - harbor
   - vault
   - vault-secrets-operator
-  - kyverno
+  # - kyverno
   - keycloak
   # - trivy-operator
