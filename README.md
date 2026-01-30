@@ -17,8 +17,11 @@ Each component integrates into a coherent, production-like workflow focused on s
 
 ## Related Articles
 
-1. [Deploy a Complete GitOps Workflow with FluxCD](https://medium.com/@rayanee/deploy-a-complete-gitops-workflow-with-fluxcd-3a8de9a3c7b2)
-2. [From Leaking Secrets to Full Automation: Managing Secrets with Vault in Kubernetes](https://medium.com/@rayanee/from-leaking-secrets-to-full-automation-managing-secrets-with-vault-in-kubernetes-db9f5a5bd26d)
+1. [Deploy a Complete GitOps Workflow with FluxCD](https://rayanekadi.com/blog/deploy-a-complete-gitops-workflow-with-fluxcd/)
+2. [From Leaking Secrets to Full Automation: Managing Secrets with Vault in Kubernetes](https://rayanekadi.com/blog/from-leaking-secrets-to-full-automation-managing-secrets-with-vault-in-kubernetes/)
+3. [Securing Kubernetes Deployments with Kyverno and Cosign](https://rayanekadi.com/blog/securing-kubernetes-deployments-with-kyverno-and-cosign/)
+4. [Build and Deploy Images to Kubernetes with GitLab CI, BuildKit and Harbor](https://rayanekadi.com/blog/build-and-deploy-images-to-kubernetes-with-gitlab-ci-buildkit-and-harbor/)
+5. [Deploying PostgreSQL on Kubernetes with S3 Backups](https://rayanekadi.com/blog/deploying-postgresql-on-kubernetes-with-s3-backups/)
 
 ## Contact
 
